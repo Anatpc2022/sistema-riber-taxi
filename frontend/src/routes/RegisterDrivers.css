@@ -1,0 +1,26 @@
+.driverContainer {
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+    border-bottom: 1px solid #CCC;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+}
+
+.driverContainer h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: .5em;
+    color: #242325;
+    font-size: 2.5em;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.driverContainer p {
+    text-align: center;
+    margin-top: 0;
+    color: #7b7b7b;
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.2;
+    padding: 0 0 .5em 0;
+}

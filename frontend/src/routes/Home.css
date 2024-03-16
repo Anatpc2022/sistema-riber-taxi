@@ -1,0 +1,88 @@
+.home h1 {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 2rem;
+    color: #242325;
+    font-weight: 600;
+}
+
+.drivers-container {
+    margin-top: 1.2em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: 1rem;
+}
+
+.driver {
+    display: inline-block;
+    margin: 0.5%;
+    padding: 1em;
+    border: 1px solid #7a7a7a;
+    border-radius: 5px;
+    height: 250px;
+    width: 300px;
+}
+
+.drivers-container .driver h3 {
+    background-color: #222;
+    color: #ff0703;
+    text-align: center;
+    padding: .4em;
+    margin-bottom: 1.3em;
+    font-size: 1.5em;
+}
+
+.drivers-container .driver h4 {
+    font-size: 1.3em;
+    color: #7a7a7a;
+    margin-bottom: 1em;
+    text-align: center;
+    background-color: transparent;
+    border-bottom: 1px solid #222;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 1px 1px 1px #22222292;
+}
+
+.drivers-container p {
+    text-align: center;
+}
+
+.driver-details {
+    text-align: center;
+}
+
+.driver-actions {
+    margin-top: 1.2em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: .5rem;
+}
+
+.driver-actions .btn-secondary {
+    text-decoration: none;
+    border: none;
+    background-color: #fff;
+    color: #222;
+    font-size: 0.9em;
+    padding: 0.6em 1em;
+    margin-right: 1em;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px #22222247;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    border-radius: 3px;
+}
+
+.driver-actions .btn-secondary:hover {
+    background-color: #222;
+    color: #920805;
+}

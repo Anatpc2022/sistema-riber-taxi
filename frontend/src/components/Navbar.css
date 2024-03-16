@@ -1,0 +1,30 @@
+#navbar {
+    background-color: #dbdadc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid red;
+}
+#navbar h2 {
+    color: #242325;
+    font-weight: 700;
+}
+.btn,
+.btn-secondary {
+    background-color: #c4c3c5;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    text-align: center;
+    transition: .4s;
+    cursor: pointer;
+}
+.btn:hover {
+    opacity: .8;
+}
+.btn-secondary {
+    border: 1px solid #cfcfcf;
+}

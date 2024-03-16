@@ -1,0 +1,88 @@
+.form {
+    width: 100%;
+    padding: 2em;
+    background-color: rgba(193, 193, 193, 0.192);
+}
+
+.form p {
+    font-size: 1.5em;
+    margin: 0.2em 0;
+    margin-top: 1em;
+}
+
+.groupForm {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.groupForm_two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.groupForm_three {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.wrapper {
+    padding: .7em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+    background-color: #fff;
+    margin-bottom: 2em;
+}
+
+.checkbox_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.radioContainer {
+    display: flex;
+    padding: .7em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+    background-color: #fff;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.labelText {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-secondary input {
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 100%;
+    padding: .7em 1.2em;
+    border-radius: 5px;
+    border: none;
+    background-color: #545252;
+    color: #ffff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .5s;
+    text-align: center;
+}
+
+.btn-secondary input:hover {
+    background-color: #6d6b6b;
+}

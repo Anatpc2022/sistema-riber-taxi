@@ -1,0 +1,24 @@
+.radioDisplay {
+    display: flex;
+    align-items: center;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+    color: #333;
+    margin-right: 8px;
+}
+
+.radioInput {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.styledRadio {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}

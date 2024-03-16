@@ -1,0 +1,30 @@
+.form_control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.form_control label {
+    margin-bottom: .6em;
+    font-weight: bold;
+}
+
+.form_control input {
+    padding: .7em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+    outline: 0;
+}
+
+.form_control input[type="file"] {
+    background: #fff;
+}
+
+.form_control input:focus {
+    border: 2px solid #6494ed99;
+}
+
+.form_control input::placeholder {
+    color: #7b7b7b;
+}
