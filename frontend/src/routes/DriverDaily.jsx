@@ -1,6 +1,6 @@
 import axios from '../axios/config';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './DriverDaily.css';
 
@@ -159,8 +159,8 @@ const DriverDaily = () => {
             <tr>
               <th>Data</th>
               <th>Dia da semana</th>
-              <th>Valor</th>
               <th>Comprovante</th>
+              <th>Valor</th>
             </tr>
           </thead>
           <tbody>
@@ -170,22 +170,22 @@ const DriverDaily = () => {
                 <tr key={daily._id}>
                   <td>{formatDate(daily.paymentDate)}</td>
                   <td>{daily.dayWeek}</td>
-                  <td>R$ {formatPayment(daily.payment)}</td>
                   <td>
                     {daily.image ? (
-                      <a href={`http://192.168.18.24:8080/${daily.image}`} target="_blank" rel="noopener noreferrer">
+                      <Link to={`/payment-voucher/${getFileNameFromPath(daily.image)}`} target="_blank">
                         Abrir imagem
-                      </a>
+                      </Link>
                     ) : (
                       'N/A'
                     )}
                   </td>
+                  <td>R$ {formatPayment(daily.payment)}</td>
                 </tr>
               ))
             )}
             <tr className='footerAmount'>
-              <td colSpan="3" style={{ textAlign: 'center' }}>Total:</td>
-              <td>R$ {driver.amount}</td>
+              <td colSpan="3" style={{ textAlign: 'center', backgroundColor: '#c9c6c6' }}>Total:</td>
+              <td style={{ textAlign: 'center', backgroundColor: '#c9c6c6' }}>R$ {formatPayment(driver.amount)}</td>
             </tr>
           </tbody>
         </table>

@@ -1,0 +1,48 @@
+.containerVoucher {
+    display: flex;
+    flex-direction: column;
+    /* Altera a direção do layout para uma coluna */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.imageVoucher {
+    text-align: center;
+    margin-top: 20px;
+    /* Adiciona um espaço entre o texto e a imagem */
+}
+
+.imageVoucher img {
+    max-width: 100%;
+    max-height: 80vh;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.closeButton {
+    margin-top: 20px;
+    /* Adiciona um espaçamento entre a imagem e o botão */
+}
+
+.button {
+    display: inline-block;
+    background-color: #dc3545;
+    /* Vermelho para indicar ação de fechar */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #c82333;
+    /* Escurece a cor de fundo ao passar o mouse */
+}
+
+.button:focus {
+    outline: none;
+}

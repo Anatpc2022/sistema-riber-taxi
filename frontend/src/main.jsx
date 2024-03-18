@@ -10,6 +10,7 @@ import Home from './routes/Home.jsx';
 import RegisterDrivers from './routes/RegisterDrivers.jsx';
 import DailyPayment from './routes/DailyPayment.jsx';
 import DriverDaily from './routes/DriverDaily.jsx';
+import PaymentVoucher from './routes/PaymentVoucher.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,9 @@ const router = createBrowserRouter([
       {
         path: "/drivers/:id", 
         element: <DriverDaily />
+      },
+      {
+         path: "/payment-voucher/:imageName", element: < PaymentVoucher />
       },
       {
         path: "/dailyPayment",
