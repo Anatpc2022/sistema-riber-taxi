@@ -25,16 +25,17 @@ const router = createBrowserRouter([
         path: "/add-driver",
         element: <RegisterDrivers />
       },
+      ,
+      {
+        path: "/dailyPayment", // Defina o caminho para a página DailyPayment
+        element: <DailyPayment />
+      },
       {
         path: "/drivers/:id", 
         element: <DriverDaily />
       },
       {
          path: "/payment-voucher/:imageName", element: < PaymentVoucher />
-      },
-      {
-        path: "/dailyPayment",
-        element: <DailyPayment />
       },
     ],
   },

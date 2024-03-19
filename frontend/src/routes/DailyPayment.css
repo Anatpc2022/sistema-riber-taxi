@@ -1,41 +1,153 @@
-.daily h2,
-.daily p {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.daily h2 {
-    color: #19191a;
-}
-
-.daily p {
-    color: #848187;
-    font-size: 1.2rem;
-}
-
-.daily form {
-    max-width: 600px;
-    background-color: #fff;
-    border: 1px solid #cfcfcf;
-    border-radius: 12px;
-    padding: 2rem;
+/* Estilo para o contêiner principal do componente */
+.daily-payment-container {
+    max-width: 800px;
     margin: 0 auto;
+    padding: 20px;
 }
 
-.daily label {
-    color: #747990;
-    margin-bottom: 1rem;
+/* Estilo para o título da página */
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o seletor de motorista */
+.driver-selector {
+    margin-bottom: 20px;
+}
+
+.driver-selector label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.driver-selector select {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Estilo para o contêiner do calendário */
+.calendar-container {
+    text-align: center;
+    width: 100%;
+}
+
+/* Estilo para o cabeçalho do calendário */
+.calendar-container h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para o wrapper do DatePicker */
+.react-datepicker-wrapper {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Estilo para o DatePicker */
+.react-datepicker {
+    font-size: 18px;
+    /* Ajusta o tamanho da fonte para tornar o calendário um pouco maior */
+    margin: 0 auto;
+    /* Centraliza o DatePicker */
+    border-radius: 10px;
+    /* Adiciona bordas arredondadas */
+}
+
+/* Estilo para o contêiner dos dias da semana */
+.react-datepicker__day-names {
     display: flex;
-    flex-direction: column;
-    gap: .5rem;
+    justify-content: space-around;
 }
 
-.daily input {
-    padding: .5rem 1rem;
-    border-radius: 5px;
-    border: 1px solid #cfcfcf;
+/* Estilo para cada dia da semana */
+.react-datepicker__day-name {
+    width: 3rem;
+    /* Ajusta o tamanho dos dias para torná-los um pouco maiores */
+    line-height: 3rem;
+    margin: 0.3rem;
+    font-weight: bold;
+    text-align: center;
 }
 
-.daily input::placeholder {
-    color: #a4a7b4;
+/* Estilo para os dias do mês */
+.react-datepicker__day {
+    width: 3rem;
+    /* Ajusta o tamanho dos dias para torná-los um pouco maiores */
+    height: 3rem;
+    line-height: 3rem;
+    margin: 0.3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.react-datepicker__day:hover {
+    background-color: #eee;
+    /* Adiciona um fundo cinza claro ao passar o mouse sobre os dias */
+}
+
+/* Estilo para os dias destacados */
+.react-datepicker__day--highlighted-green {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.react-datepicker__day--highlighted-red {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Estilo para os dias fora do mês */
+.react-datepicker__day--outside-month {
+    opacity: 0.3;
+    background-color: #c9c8c8;
+    color: #777676
+}
+
+/* Estilo para a legenda */
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Estilo para cada item da legenda */
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/* Estilo para o círculo colorido da legenda */
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Estilo para a cor verde da legenda */
+.legend-green {
+    background-color: #2ecc71;
+}
+
+/* Estilo para a cor vermelha da legenda */
+.legend-red {
+    background-color: #e74c3c;
+}
+
+/* Estilo para o texto da legenda */
+.legend-label {
+    font-size: 16px;
+}
+
+/* Estilo para os dias da semana */
+.weekdays {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
 }
