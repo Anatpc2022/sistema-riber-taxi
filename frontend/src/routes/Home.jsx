@@ -36,8 +36,8 @@ const Home = () => {
                             <Link to={`/drivers/${driver._id}`} className="btn-secondary">
                                 Diárias
                             </Link>
-                            <Link to={{ pathname: "/add-driver", state: { driver } }} className="btn-secondary">
-                                Cadastro
+                            <Link to={{ pathname: `/add-driver/${driver._id}`, state: { isEditing: true } }} className="btn-secondary">
+                                Editar
                             </Link>
                         </div>
                     </div>

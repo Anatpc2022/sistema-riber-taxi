@@ -1,10 +1,11 @@
 import axios from "../../axios/config";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "../form/Input";
 import InputRadio from "../form/InputRadio";
 import "./DriverForm.css";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 function DriverForm() {
 
@@ -24,7 +25,7 @@ function DriverForm() {
     const [mod, setMod] = useState('');
     const [placa, setPlaca] = useState('');
     const [cor, setCor] = useState('');
-    const [carretinha, setCarretinha] = useState(false); // Valor inicial para campos booleanos
+    const [carretinha, setCarretinha] = useState(false);
     const [roca, setRoca] = useState(false);
     const [animal, setAnimal] = useState(false);
     const [cartao, setCartao] = useState(false);
@@ -34,39 +35,79 @@ function DriverForm() {
 
     const [docCnh, setDocCnh] = useState(null);
     const [docAntecedente, setDocAntecedente] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedDriver, setEditedDriver] = useState(null);
 
+    const { id } = useParams();
     const navigate = useNavigate();
+
+    // Definindo a função formatDate no escopo global do componente
+    const formatDate = (dateString) => {
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        return new Date(dateString).toLocaleDateString('pt-BR', options);
+    };
 
     const handleRadioChange = (e) => {
         setSexo(e.target.value);
     };
 
-    const handleNascimentoChange = (e) => {
-        console.log("Novo valor de nascimento:", e.target.value);
-        setNascimento(e.target.value);
-    };
-
-    // Função para formatar a data no formato "DD/MM/YYYY"
-    const formatDate = (dateString) => {
-        const [year, month, day] = dateString.split('-');
-        return `${day}/${month}/${year}`;
-    };
-
     const handleChange = (event) => {
-        if (event.target.name === "docCnh" || event.target.name === "docAntecedente") {
+        if (event.target.name === "docCnh") {
             setDocCnh(event.target.files[0]);
+        } else if (event.target.name === "docAntecedente") {
             setDocAntecedente(event.target.files[0]);
-            return;
         }
     };
 
-    const createDriver = async (e) => {
+    useEffect(() => {
+        if (id) {
+            setIsEditing(true);
+            fetchDriver(id);
+        }
+    }, [id]);
+
+
+    const fetchDriver = async (driverId) => {
+        try {
+            const response = await axios.get(`/drivers/${driverId}`);
+            setEditedDriver(response.data);
+            setName(response.data.name || '');
+            setNumberCar(response.data.numberCar || '');
+            setNascimento(response.data.nascimento ? formatDate(response.data.nascimento) : '');
+            setSexo(response.data.sexo || '');
+            setEndereco(response.data.endereco || '');
+            setNr(response.data.nr || '');
+            setComp(response.data.comp || '');
+            setBairro(response.data.bairro || '');
+            setCel(response.data.cel || '');
+            setCelContato(response.data.celContato || '');
+            setCpf(response.data.cpf || '');
+            setCnh(response.data.cnh || '');
+            setCateg(response.data.categ || '');
+            setMod(response.data.mod || '');
+            setPlaca(response.data.placa || '');
+            setCor(response.data.cor || '');
+            setCarretinha(response.data.carretinha || '');
+            setRoca(response.data.roca || '');
+            setAnimal(response.data.animal || '');
+            setCartao(response.data.cartao || '');
+            setPix(response.data.pix || '');
+            setPMGrande(response.data.pMGrande || '');
+            setDocCnh(response.data.docCnh || '');
+            setDocAntecedente(response.data.docAntecedente || '');
+            setEntryDate(new Date(response.data.entryDate || '').toLocaleDateString());
+        } catch (error) {
+            console.error("Erro ao obter os dados do motorista:", error);
+        }
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
         formData.append("name", name);
         formData.append("numberCar", numberCar);
-        formData.append("nascimento", formatDate(nascimento));
+        formData.append("nascimento", nascimento);
         formData.append("sexo", sexo);
         formData.append("endereco", endereco);
         formData.append("nr", nr);
@@ -91,13 +132,21 @@ function DriverForm() {
 
         try {
 
-            const response = await axios.post("/drivers", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-
-            if (response.status === 201) {
+            let response;
+            if (isEditing) {
+                response = await axios.patch(`/drivers/${id}`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+            } else {
+                response = await axios.post("/drivers", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+            }
+            if (response.status === 201 || response.status === 200) {
                 toast.success(response.data.msg);
                 navigate("/");
             }
@@ -108,7 +157,7 @@ function DriverForm() {
     };
 
     return (
-        <form onSubmit={(e) => createDriver(e)} className="form" noValidate>
+        <form onSubmit={(e) => handleSubmit(e)} className="form" noValidate>
             <p>Dados pessoais:</p>
             <Input
                 type="text"
@@ -120,40 +169,47 @@ function DriverForm() {
                 required
             />
             <Input
-                type="date"
+                type="text"
                 text="Data de Nasc"
                 name="nascimento"
                 placeholder="dd/mm/aaaa"
-                onChange={handleNascimentoChange}
+                onChange={(e) => setNascimento(e.target.value)}
                 value={nascimento}
                 required
+                keyboardType="numeric"
             />
             <div className="radioContainer">
                 <span className="labelText">Sexo:</span>
-                <InputRadio
-                    type="radio"
-                    name="sexo"
-                    value="masculino"
-                    text="Masculino"
-                    handleOnChange={handleRadioChange}
-                    checked={sexo === 'masculino'}
-                />
-                <InputRadio
-                    type="radio"
-                    name="sexo"
-                    value="feminino"
-                    text="Feminino"
-                    handleOnChange={handleRadioChange}
-                    checked={sexo === 'feminino'}
-                />
-                <InputRadio
-                    type="radio"
-                    name="sexo"
-                    value="outros"
-                    text="Outros"
-                    handleOnChange={handleRadioChange}
-                    checked={sexo === 'outros'}
-                />
+                <div className="style-radio">
+                    <InputRadio
+                        type="radio"
+                        name="sexo"
+                        value="masculino"
+                        text="Masculino"
+                        handleOnChange={handleRadioChange}
+                        checked={sexo === 'masculino'}
+                    />
+                </div>
+                <div className="style-radio">
+                    <InputRadio
+                        type="radio"
+                        name="sexo"
+                        value="feminino"
+                        text="Feminino"
+                        handleOnChange={handleRadioChange}
+                        checked={sexo === 'feminino'}
+                    />
+                </div>
+                <div className="style-radio">
+                    <InputRadio
+                        type="radio"
+                        name="sexo"
+                        value="outros"
+                        text="Outros"
+                        handleOnChange={handleRadioChange}
+                        checked={sexo === 'outros'}
+                    />
+                </div>
             </div>
             <br />
             <div className="groupForm">
@@ -370,7 +426,7 @@ function DriverForm() {
             </div>
             <hr />
             <div className="btn-secondary">
-                <input type="submit" value="Cadastrar Motorista" />
+                <input type="submit" value={isEditing ? "Atualizar Motorista" : "Cadastrar Motorista"} />
             </div>
         </form>
     );

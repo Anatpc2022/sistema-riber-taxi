@@ -68,6 +68,11 @@
     color: #333;
 }
 
+.style-radio {
+    display: flex;
+    padding: 0 .7em;
+}
+
 .btn-secondary input {
     font-size: 1.2em;
     font-weight: bold;

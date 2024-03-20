@@ -92,20 +92,19 @@
 
 /* Estilo para os dias destacados */
 .react-datepicker__day--highlighted-green {
-    background-color: #2ecc71;
-    color: white;
+    color: #11e76a;
+    font-weight: 500;
 }
 
 .react-datepicker__day--highlighted-red {
-    background-color: #e74c3c;
-    color: white;
+    color: #ee321d;
+    font-weight: 500;
 }
 
 /* Estilo para os dias fora do mês */
 .react-datepicker__day--outside-month {
     opacity: 0.3;
-    background-color: #c9c8c8;
-    color: #777676
+    color: #575656
 }
 
 /* Estilo para a legenda */

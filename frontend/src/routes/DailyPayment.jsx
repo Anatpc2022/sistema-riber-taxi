@@ -44,8 +44,13 @@ const DailyPayment = () => {
   };
 
   const highlightDates = (date) => {
-    console.log("Selected Driver:", selectedDriver);
-    console.log("Selected Driver Dailys:", selectedDriver ? selectedDriver.dailys : null);
+
+    const currentDate = new Date();
+
+    // Verificar se a data é posterior à data atual
+    if (date > currentDate) {
+      return null; // Se for posterior, não destaque com cor
+    }
 
     const formattedDate = date.toDateString(); // Formato: dd/MM/yyyy
 
