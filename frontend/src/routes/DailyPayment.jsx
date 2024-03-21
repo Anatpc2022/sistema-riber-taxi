@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from '../axios/config';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -26,9 +26,13 @@ const DailyPayment = () => {
 
   const fetchCalendarDates = async (driverId) => {
     try {
-      const res = await axios.get(`/drivers/${driverId}/dailys`);
-      const dates = res.data.map(daily => new Date(daily.paymentDate));
-      setCalendarDates(dates);
+      const res = await axios.get(`/drivers/${driverId}`);
+      setSelectedDriver(res.data);
+      if (res.data.dailys.length > 0) {
+        const dates = res.data.dailys.map(daily => new Date(daily.paymentDate));
+        setCalendarDates(dates);
+        return;
+      }
     } catch (error) {
       console.error('Erro ao obter as datas do calendário:', error);
     }
@@ -43,29 +47,29 @@ const DailyPayment = () => {
     }
   };
 
-  const highlightDates = (date) => {
+  const highlightDates = useMemo(() => {
+    return (date) => {
+      const currentDate = new Date();
 
-    const currentDate = new Date();
+      // Verificar se a data é posterior à data atual
+      if (date > currentDate) {
+        return null; // Se for posterior, não destaque com cor
+      }
 
-    // Verificar se a data é posterior à data atual
-    if (date > currentDate) {
-      return null; // Se for posterior, não destaque com cor
-    }
+      const formattedDate = date.toDateString(); // Formato: dd/MM/yyyy
 
-    const formattedDate = date.toDateString(); // Formato: dd/MM/yyyy
+      if (selectedDriver && selectedDriver.dailys) {
+        const dailyWithPaymentDate = selectedDriver.dailys.find(daily => {
+          const dailyDate = new Date(daily.paymentDate);
+          return dailyDate.toDateString() === formattedDate;
+        });
 
-    if (selectedDriver && selectedDriver.dailys) {
-      const dailyWithPaymentDate = selectedDriver.dailys.find(daily => {
-        const dailyDate = new Date(daily.paymentDate);
-        console.log("Daily Payment Date:", dailyDate.toDateString());
-        return dailyDate.toDateString() === formattedDate;
-      });
+        return dailyWithPaymentDate ? 'react-datepicker__day--highlighted-green' : 'react-datepicker__day--highlighted-red';
+      }
 
-      return dailyWithPaymentDate ? 'react-datepicker__day--highlighted-green' : 'react-datepicker__day--highlighted-red';
-    }
-
-    return null;
-  };
+      return null;
+    };
+  }, [selectedDriver]);
 
   return (
     <div className="daily-payment-container">

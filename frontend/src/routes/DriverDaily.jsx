@@ -9,12 +9,14 @@ const DriverDaily = () => {
 
   const [driver, setDriver] = useState(null);
   const [image, setImage] = useState(null);
-  const [imageName, setImageName] = useState(""); // Adiciona um estado para armazenar o nome do arquivo de imagem
+  const [imageName, setImageName] = useState("");
   const [dailys, setDailys] = useState([]);
 
   const [paymentDate, setPaymentDate] = useState("");
   const [dayWeek, setDayWeek] = useState("");
   const [payment, setPayment] = useState("");
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     const getDriver = async () => {
@@ -22,7 +24,6 @@ const DriverDaily = () => {
         const res = await axios.get(`/drivers/${id}`);
         setDriver(res.data);
         setDailys(res.data.dailys);
-
       } catch (error) {
         console.error('Erro ao obter os dados do motorista:', error);
         toast.error('Erro ao carregar os dados do motorista. Por favor, tente novamente.');
@@ -30,6 +31,20 @@ const DriverDaily = () => {
     };
     getDriver();
   }, [id]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768); // Defina a largura de 768px como limite para uma tela pequena
+    };
+
+    handleResize(); // Chamada inicial para configurar o estado com base no tamanho da tela ao carregar a página
+
+    window.addEventListener('resize', handleResize); // Adicione um event listener para monitorar as mudanças de tamanho da tela
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Limpe o event listener quando o componente for desmontado
+    };
+  }, []);
 
   const formatDate = (dateString) => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
@@ -69,7 +84,7 @@ const DriverDaily = () => {
       setDailys((dailys) => [...dailys, lastDaily]);
 
       setImage(null);
-      setImageName(""); // Limpa o nome do arquivo de imagem
+      setImageName("");
       setPaymentDate("");
       setDayWeek("");
       setPayment("");
@@ -83,13 +98,13 @@ const DriverDaily = () => {
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-    setImageName(e.target.files[0].name); // Define o nome do arquivo de imagem selecionado
+    setImageName(e.target.files[0].name);
   };
 
   if (!driver) return <p>Carregando...</p>;
 
   return (
-    <div className='containerDaily'>
+    <div className={`containerDaily ${isSmallScreen ? 'smallScreen' : ''}`}>
       <div className='daily'>
         <h2>Pagamento de Diárias</h2>
         <p>Cadastrar Diárias</p>
@@ -140,15 +155,15 @@ const DriverDaily = () => {
                 name="image"
                 onChange={handleImageChange}
               />
-              {imageName && <p>{imageName}</p>} {/* Exibe o nome do arquivo de imagem selecionado */}
+              {imageName && <p>{imageName}</p>}
             </label>
             <input type="submit" value="Concluir Pagamento" />
           </form>
         </div>
       </div>
-      <div className="dayPayment">
+      <div className={`dayPayment ${isSmallScreen ? 'smallScreen' : ''}`}>
         <div className="title_payment">
-          <h1>Motorista</h1>
+          <h1>Tabela de Pagamentos</h1>
         </div>
         <table className="tableDay">
           <thead>
@@ -166,22 +181,24 @@ const DriverDaily = () => {
           <tbody>
             {dailys.length === 0 && <tr><td colSpan="4">Não há pagamento de diárias...</td></tr>}
             {dailys.length > 0 && (
-              dailys.map((daily) => (
-                <tr key={daily._id}>
-                  <td>{formatDate(daily.paymentDate)}</td>
-                  <td>{daily.dayWeek}</td>
-                  <td>
-                    {daily.image ? (
-                      <Link to={`/payment-voucher/${getFileNameFromPath(daily.image)}`} target="_blank">
-                        Abrir imagem
-                      </Link>
-                    ) : (
-                      'N/A'
-                    )}
-                  </td>
-                  <td>R$ {formatPayment(daily.payment)}</td>
-                </tr>
-              ))
+              dailys
+                .sort((a, b) => new Date(a.paymentDate) - new Date(b.paymentDate)) // Ordena os pagamentos com base na data
+                .map((daily) => (
+                  <tr key={daily._id}>
+                    <td>{formatDate(daily.paymentDate)}</td>
+                    <td>{daily.dayWeek}</td>
+                    <td>
+                      {daily.image ? (
+                        <Link to={`/payment-voucher/${getFileNameFromPath(daily.image)}`} target="_blank">
+                          Abrir imagem
+                        </Link>
+                      ) : (
+                        'N/A'
+                      )}
+                    </td>
+                    <td>R$ {formatPayment(daily.payment)}</td>
+                  </tr>
+                ))
             )}
             <tr className='footerAmount'>
               <td colSpan="3" style={{ textAlign: 'center', backgroundColor: '#c9c6c6' }}>Total:</td>

@@ -16,7 +16,7 @@ const Navbar = () => {
                     </li>
                     <li>
                         <Link to="/dailyPayment" className="btn">
-                            Pagamento de Diárias
+                            Calendário de Diárias
                         </Link>
                     </li>
                 </ul>

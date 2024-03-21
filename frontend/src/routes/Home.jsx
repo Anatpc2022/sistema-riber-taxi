@@ -19,6 +19,17 @@ const Home = () => {
         getDrivers();
     }, []);
 
+    const handleDeleteDriver = async (driverId) => {
+        try {
+            await axios.delete(`/drivers/${driverId}`);
+            // Atualiza a lista de motoristas após a exclusão
+            const updatedDrivers = drivers.filter(driver => driver._id !== driverId);
+            setDrivers(updatedDrivers);
+        } catch (error) {
+            console.error("Erro ao excluir motorista:", error);
+        }
+    };
+
     if (!drivers) return <p>Carregando...</p>;
 
     return (
@@ -34,11 +45,14 @@ const Home = () => {
                         </div>
                         <div className="driver-actions">
                             <Link to={`/drivers/${driver._id}`} className="btn-secondary">
-                                Diárias
+                                Pagamento de Diárias
                             </Link>
                             <Link to={{ pathname: `/add-driver/${driver._id}`, state: { isEditing: true } }} className="btn-secondary">
-                                Editar
+                                Atualizar Motorista
                             </Link>
+                        </div>
+                        <div className="btn-exclude">
+                            <button onClick={() => handleDeleteDriver(driver._id)}>X</button>
                         </div>
                     </div>
                 ))}
