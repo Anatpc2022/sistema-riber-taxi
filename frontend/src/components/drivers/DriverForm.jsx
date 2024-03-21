@@ -5,6 +5,7 @@ import InputRadio from "../form/InputRadio";
 import "./DriverForm.css";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import { PatternFormat } from 'react-number-format';
 
 
 function DriverForm() {
@@ -176,7 +177,7 @@ function DriverForm() {
                 onChange={(e) => setNascimento(e.target.value)}
                 value={nascimento}
                 required
-                keyboardType="numeric"
+                
             />
             <div className="radioContainer">
                 <span className="labelText">Sexo:</span>
@@ -248,46 +249,58 @@ function DriverForm() {
                 required
             />
             <div className="groupForm_two">
-                <Input
-                    type="tel"
-                    text="Seu Telefone"
-                    name="cel"
-                    placeholder="(99)9 9999-9999"
-                    pattern="[0-9]{11}"
-                    onChange={(e) => setCel(e.target.value)}
-                    value={cel}
-                    required
-                />
-                <Input
-                    type="tel"
-                    text="Telefone de Emergência"
-                    name="celContato"
-                    placeholder="(99)9 9999-9999"
-                    pattern="[0-9]{11}"
-                    onChange={(e) => setCelContato(e.target.value)}
-                    value={celContato}
-                    required
-                />
+                <div className="form_control">
+                    <label htmlFor="cel">Seu Telefone:</label>
+                    <PatternFormat
+                        type="tel"
+                        name="cel"
+                        placeholder="(99)9 9999 9999"
+                        format="(##) # #### ####"
+                        allowEmptyFormatting mask="_"
+                        onChange={(e) => setCel(e.target.value)}
+                        value={cel}
+                        required
+                    />
+                </div>
+                <div className="form_control">
+                    <label htmlFor="celContato">Contato de Emergência:</label>
+                    <PatternFormat
+                        type="tel"
+                        name="celContato"
+                        placeholder="(99)9 9999 9999"
+                        format="(##) # #### ####"
+                        allowEmptyFormatting mask="_"
+                        onChange={(e) => setCelContato(e.target.value)}
+                        value={celContato}
+                        required
+                    />
+                </div>
             </div>
             <div className="groupForm_three">
-                <Input
-                    type="text"
-                    text="CPF"
-                    name="cpf"
-                    placeholder="Número do CPF"
-                    onChange={(e) => setCpf(e.target.value)}
-                    value={cpf}
-                    required
-                />
-                <Input
-                    type="text"
-                    text="CNH"
-                    name="cnh"
-                    placeholder="Número da CNH"
-                    onChange={(e) => setCnh(e.target.value)}
-                    value={cnh}
-                    required
-                />
+                <div className="form_control">
+                    <label htmlFor="cpf">CPF:</label>
+                    <PatternFormat
+                        type="text"
+                        name="cpf"
+                        format="###.###.###-##"
+                        allowEmptyFormatting mask="_"
+                        onChange={(e) => setCpf(e.target.value)}
+                        value={cpf}
+                        required
+                    />
+                </div>
+                <div className="form_control">
+                    <label htmlFor="cnh">CNH:</label>
+                    <PatternFormat
+                        type="text"
+                        name="cnh"
+                        format="###########"
+                        allowEmptyFormatting mask="_"
+                        onChange={(e) => setCnh(e.target.value)}
+                        value={cnh}
+                        required
+                    />
+                </div>
                 <Input
                     type="text"
                     text="Categoria"
