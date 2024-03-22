@@ -1,4 +1,5 @@
 // app.js
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -9,14 +10,17 @@ app.use(express.static("public"));
 
 require("./db/conn");
 
+// Importar as rotas de drivers
 const driverRoutes = require("./routes");
+
+// Importar as rotas de autenticação
+const authRoutes = require("./authRoutes");
 
 // Rotas relacionadas a drivers, prefixadas com "/drivers"
 app.use("/drivers", driverRoutes);
 
-// Rota de login na raiz "/"
-const loginRoute = require("./routes");
-app.use("/login", loginRoute);
+// Rotas relacionadas à autenticação, sem prefixo
+app.use(authRoutes);
 
 const port = 3000;
 
