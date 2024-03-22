@@ -7,15 +7,15 @@ const Navbar = () => {
                 <h2>Sistema Riber Táxi</h2>
                 <ul>
                     <li>
-                    <Link to="/" className="btn">Motoristas</Link>
+                    <Link to="/home" className="btnNav">Motoristas</Link>
                     </li>
                     <li>
-                        <Link to="/add-driver" className="btn">
+                        <Link to="/add-driver" className="btnNav">
                             Cadastrar Motoristas
                         </Link>
                     </li>
                     <li>
-                        <Link to="/dailyPayment" className="btn">
+                        <Link to="/dailyPayment" className="btnNav">
                             Calendário de Diárias
                         </Link>
                     </li>

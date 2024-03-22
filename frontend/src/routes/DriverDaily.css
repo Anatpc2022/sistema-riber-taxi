@@ -126,6 +126,17 @@
     border-right: 1px solid #fff;
 }
 
+.img {
+    text-decoration: none;
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+}
+.img:hover {
+    font-size: .9rem;
+    font-weight: bold;
+}
+
 .footerAmount {
     font-weight: 700;
 }

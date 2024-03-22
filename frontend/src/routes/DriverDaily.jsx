@@ -189,7 +189,7 @@ const DriverDaily = () => {
                     <td>{daily.dayWeek}</td>
                     <td>
                       {daily.image ? (
-                        <Link to={`/payment-voucher/${getFileNameFromPath(daily.image)}`} target="_blank">
+                        <Link to={`/payment-voucher/${getFileNameFromPath(daily.image)}`} target="_blank" className='img'>
                           Abrir imagem
                         </Link>
                       ) : (

@@ -1,4 +1,7 @@
-.home h1 {
+.homeContainer {
+    min-height: 80vh;
+}
+.homeContainer h1 {
     text-align: center;
     margin: 2rem 0;
     font-size: 2rem;

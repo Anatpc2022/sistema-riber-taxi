@@ -1,36 +1,42 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from '../axios/config'; // Importe o Axios
+import axios from '../axios/config';
 import image from '../img/riber_taxi_img.jpeg';
-import "./LoginForm.css";
+import "./RegisterForm.css";
 
-const LoginForm = () => {
+const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Verificar se as senhas coincidem
+        if (password !== confirmPassword) {
+            toast.error('As senhas não coincidem!');
+            return;
+        }
+
         try {
-            // Enviar solicitação de login para o backend usando Axios
-            const response = await axios.post('http://localhost:3000/login', {
+            const response = await axios.post('http://localhost:3000/register', {
                 email,
                 password,
             });
 
-            // Verificar se a resposta do servidor indica sucesso
             if (response.status === 200) {
-                // Se o login for bem-sucedido, redirecione para a página de dashboard
+                toast.success('Registro realizado com sucesso!');
                 navigate('/home');
             } else {
-                // Se houver um erro durante o login, exiba uma mensagem de erro
-                toast.error('Erro ao fazer login. Verifique suas credenciais.');
+
+                toast.error('Erro ao fazer o registro! Tente novamente!');
             }
         } catch (error) {
-            // Se houver um erro de conexão ou outro erro, exiba uma mensagem de erro genérica
-            toast.error('Erro ao fazer login. Por favor, tente novamente mais tarde.');
+
+            toast.error('Erro ao fazer o registro!. Por favor, tente novamente mais tarde.');
         }
     };
 
@@ -38,7 +44,7 @@ const LoginForm = () => {
         <div className="login-container">
             <img src={image} alt="Riber Taxi" className="login-image" />
             <div className="login-content">
-                <h2>Login</h2>
+                <h2>Cadastre um Email</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Email:</label>
@@ -48,11 +54,20 @@ const LoginForm = () => {
                         <label>Senha:</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" required />
                     </div>
-                    <button type="submit" className="btn ">Entrar</button>
+                    <div className="form-group">
+                        <label>Repita a senha:</label>
+                        <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="form-control" required />
+                    </div>
+                    <button type="submit" className="btn ">Cadastrar</button>
+                    <div className="back">
+                        <Link to="/" >
+                            &nbsp;Voltar
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>
     );
 };
 
-export default LoginForm;
+export default RegisterForm;

@@ -9,18 +9,6 @@ body {
     background-color: #f5f6fa;
 }
 
-ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-a {
-    color: #283252;
-    text-decoration: none;
-    font-weight: 600;
-}
-
 p {
     color: #747990;
 }

@@ -5,7 +5,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Components
 import App from './App';
-import LoginForm from './components/LoginForm'; // Importe o componente LoginForm
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 
 // Pages
 import Home from './routes/Home';
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LoginForm />
+      },
+      {
+        path: "/register",
+        element: <RegisterForm />
       },
       // Adicione as outras rotas como sub-rotas
       {

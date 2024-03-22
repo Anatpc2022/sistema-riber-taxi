@@ -3,14 +3,17 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const registerUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, confirmPassword } = req.body;
+
+  // Verificar se a senha e a confirmação da senha são idênticas
+  if (!confirmPassword || password !== confirmPassword) {
+    return res.status(400).json({ message: "As senhas não coincidem" });
+  }
 
   try {
-
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-
       return res.status(401).json({ message: "Email já cadastrado" });
     }
 
@@ -23,7 +26,6 @@ const registerUser = async (req, res) => {
     // Retornar uma resposta de sucesso
     return res.status(201).json({ message: "Usuário cadastrado com sucesso" });
   } catch (error) {
-
     console.error("Erro durante o registro de usuário:", error);
     return res
       .status(500)

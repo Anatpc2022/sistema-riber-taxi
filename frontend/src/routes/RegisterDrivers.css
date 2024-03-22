@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid #CCC;
     box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+    background-color: #f5f6fa;
 }
 
 .driverContainer h1 {
@@ -15,6 +16,7 @@
     font-weight: 500;
     line-height: 1.2;
 }
+
 .driverContainer p {
     text-align: center;
     margin-top: 0;

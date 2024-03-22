@@ -86,24 +86,18 @@
     color: #928f8f;
 }
 
-.register {
-    justify-content: space-around;
+.back {
     padding: 1rem;
     text-align: center;
 }
-.register p {
-    color: #3d3c3c;
-    font-weight: 600;
-    font-size: 1rem;
-}
 
-.register a {
+.back a {
     text-decoration: none;
     color: #3d3c3c;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
 }
-.register a:hover {
-    font-size: 1.6rem;
+.back a:hover {
+    font-size: 1.3rem;
 }

@@ -33,7 +33,7 @@ const Home = () => {
     if (!drivers) return <p>Carregando...</p>;
 
     return (
-        <div className="home">
+        <div className="homeContainer">
             <h1>Motoristas</h1>
             <div className="drivers-container">
                 {drivers.length === 0 && <p>Não há motoristas cadastrados!</p>}

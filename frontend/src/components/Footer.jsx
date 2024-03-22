@@ -3,7 +3,8 @@ import "./Footer.css";
 const Footer = () => {
     return (
         <footer>
-            <p>Riber Táxi &copy; 2024</p>
+            <h4>Riber Táxi &copy; 2024</h4>
+            <p>An@</p>
         </footer>
     );
 };

@@ -9,22 +9,34 @@
     margin-bottom: 1rem;
     border-bottom: 1px solid red;
 }
+
 #navbar h2 {
     color: #242325;
     font-weight: 700;
 }
-.btn,
-.btn-secondary {
-    background-color: #c4c3c5;
+
+#navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+#navbar a {
+    color: #ff0703;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btnNav {
+    background-color: #222;
+    color: #ff0703;
     padding: .5rem 1rem;
     border-radius: 5px;
     text-align: center;
     transition: .4s;
     cursor: pointer;
 }
-.btn:hover {
-    opacity: .8;
-}
-.btn-secondary {
-    border: 1px solid #cfcfcf;
+
+.btnNav:hover {
+    opacity: .9;
 }
