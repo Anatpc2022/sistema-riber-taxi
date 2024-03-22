@@ -1,0 +1,86 @@
+.login-container {
+    margin-top: 40px;
+    margin-left: 60px;
+    width: 85%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #920805;
+    border-radius: 10px;
+}
+
+.login-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    text-align: center;
+    width: 90vw;
+    height: 90vh;
+    box-sizing: none;
+    display: block;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 2px 2px 2px rgb(0, 0, 2, 0.2);
+}
+
+.login-container h2 {
+    font-size: 2em;
+    color: #484747;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+.login-content {
+    margin-left: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    width: 60vw;
+    height: 90vh;
+    padding: 3em;
+    padding-top: 1em;
+    padding-bottom: 13px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Estilos para os campos de entrada */
+.form-group input {
+    width: 100%;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 0;
+    border-bottom: 2px solid rgb(200, 200, 200);
+}
+.form-group label {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.btn  {
+    text-align: center;
+    outline: none;
+    padding: 16px 20px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #920805;
+    color: #ffff;
+    max-width: 350px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: #9208059d;
+    color: #928f8f;
+}

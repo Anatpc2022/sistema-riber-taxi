@@ -1,9 +1,8 @@
 const express = require("express");
-
 const router = express.Router();
-
 const upload = require("./helpers/upload");
 
+const { createUser, registerUser } = require("./controllers/AuthController");
 const {
   createDriver,
   getDrivers,
@@ -13,8 +12,14 @@ const {
   addDaily,
 } = require("./controllers/DriverController");
 
+// Rota de login na raiz "/"
+router.post("/", (req, res) => createUser(req, res));
+
+// Rota de registro de usuário
+router.post("/register", (req, res) => registerUser(req, res)); // Adicione essa linha
+
 router.post(
-  "/",
+  "/drivers",
   upload.fields([
     { name: "docCnh", maxCount: 1 },
     { name: "docAntecedente", maxCount: 1 },
@@ -50,14 +55,14 @@ router.post(
   (req, res) => createDriver(req, res)
 );
 
-router.get("/", (req, res) => getDrivers(req, res));
+router.get("/drivers", (req, res) => getDrivers(req, res));
 
-router.get("/:id", (req, res) => getDriver(req, res));
+router.get("/drivers/:id", (req, res) => getDriver(req, res));
 
-router.delete("/:id", (req, res) => deleteDriver(req, res));
+router.delete("/drivers/:id", (req, res) => deleteDriver(req, res));
 
 router.patch(
-  "/:id",
+  "/drivers/:id",
   upload.fields([
     { name: "docCnh", maxCount: 1 },
     { name: "docAntecedente", maxCount: 1 },
@@ -93,6 +98,8 @@ router.patch(
   (req, res) => updateDriver(req, res)
 );
 
-router.patch("/:id/daily", upload.single("image"), (req, res) => addDaily(req, res));
+router.patch("/drivers/:id/daily", upload.single("image"), (req, res) =>
+  addDaily(req, res)
+);
 
 module.exports = router;
