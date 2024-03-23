@@ -149,7 +149,7 @@ function DriverForm() {
             }
             if (response.status === 201 || response.status === 200) {
                 toast.success(response.data.msg);
-                navigate("/");
+                navigate("/home");
             }
         } catch (error) {
             console.log(error);
